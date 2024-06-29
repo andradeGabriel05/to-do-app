@@ -5,7 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import sql.ProjectScreenSql;
+
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -17,8 +23,8 @@ public class ProjectScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField projectName;
+	private JTextField projectDesc;
 
 
 	public ProjectScreen() {
@@ -47,10 +53,10 @@ public class ProjectScreen extends JFrame {
 		lblTaskName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pnlName.add(lblTaskName);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setColumns(10);
-		pnlName.add(textField);
+		projectName = new JTextField();
+		projectName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		projectName.setColumns(10);
+		pnlName.add(projectName);
 		
 		JPanel pnlDesc = new JPanel();
 		contentPane.add(pnlDesc);
@@ -60,17 +66,26 @@ public class ProjectScreen extends JFrame {
 		lblTaskDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pnlDesc.add(lblTaskDesc);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_1.setColumns(10);
-		pnlDesc.add(textField_1);
+		projectDesc = new JTextField();
+		projectDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		projectDesc.setColumns(10);
+		pnlDesc.add(projectDesc);
 		
 		JPanel pnlAddButton = new JPanel();
 		contentPane.add(pnlAddButton);
 		pnlAddButton.setLayout(new CardLayout(0, 30));
 		
 		JButton btnAddNewProject = new JButton("Add new project");
-		pnlAddButton.add(btnAddNewProject, "name_49968133522000");
+		pnlAddButton.add(btnAddNewProject);
+		
+		btnAddNewProject.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProjectScreenSql projectScreenSql = new ProjectScreenSql();
+				projectScreenSql.addProject(projectName.getText(), projectDesc.getText());
+			}
+		});
 	}
 
 }

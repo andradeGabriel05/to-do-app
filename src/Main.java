@@ -1,6 +1,6 @@
 import java.awt.EventQueue;
 
-import gui.mainScreen;
+import gui.MainScreen;
 
 public class Main {
 
@@ -8,7 +8,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainScreen frame = new mainScreen();
+					System.out.println("Starting log...");
+					MainScreen frame = new MainScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -9,14 +9,17 @@ CREATE TABLE `project` (
   `name` varchar(60) NOT NULL,
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`idProject`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci 
+AUTO_INCREMENT=3;
 
 CREATE TABLE `task` (
   `idTask` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
   `description` varchar(60) NOT NULL,
   `period` varchar(30) NOT NULL,
+  `task_completed` bit(1) DEFAULT NULL,
   PRIMARY KEY (`idTask`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci 
+AUTO_INCREMENT=20;
 
 COMMIT;

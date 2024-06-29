@@ -14,7 +14,7 @@ public class Connect {
 	
 	public void openConnection() {
 		try {
-			System.out.println("[Connect] Connecting;");
+			System.out.println("[Connect] Connecting... ");
 			connection = DriverManager.getConnection(url, user, password);
 			System.out.println("[Connect] Connected successfully!");
 

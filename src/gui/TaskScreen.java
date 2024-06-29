@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -31,7 +32,6 @@ public class TaskScreen extends JFrame {
 	private JPanel contentPane;
 	private JTextField txfTaskName;
 	private JTextField txfTaskDesctiption;
-//	private JTextField txfTaskPeriod;
 	private JTextField txfTaskPeriod;
 
 
@@ -90,10 +90,7 @@ public class TaskScreen extends JFrame {
 		txfTaskPeriod = new JTextField();
 		pnlPeriod.add(txfTaskPeriod);
 		txfTaskPeriod.setColumns(10);
-		
-		txfTaskPeriod = new JTextField();
 		txfTaskPeriod.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txfTaskPeriod.setColumns(10);
 		
 		JPanel pnlAddButton = new JPanel();
 		contentPane.add(pnlAddButton);
@@ -106,7 +103,16 @@ public class TaskScreen extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TaskScreenSql taskSql = new TaskScreenSql();
-				taskSql.addTask(txfTaskName.getText(), txfTaskDesctiption.getText(), txfTaskPeriod.getText());
+				System.out.println("[TaskScreen] Verifying inputs");
+				if(txfTaskName.getText().length() < 1 || txfTaskDesctiption.getText().length() < 1 || txfTaskPeriod.getText().length() < 1) {
+					JOptionPane.showMessageDialog(null, "Please, fill out all required fields!");
+				} else {
+					taskSql.addTask(txfTaskName.getText(), txfTaskDesctiption.getText(), txfTaskPeriod.getText());	
+				}
+
+				
+				
+
 				
 			}
 		});
