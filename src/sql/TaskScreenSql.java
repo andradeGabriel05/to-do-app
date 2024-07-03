@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
@@ -16,6 +18,8 @@ public class TaskScreenSql extends Connect {
 	
 	public void addTask(String name, String description, String period) {
 		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			
 			System.out.println("[TaskScreenSql] Opening connection...");
 			openConnection();
 			
@@ -26,7 +30,7 @@ public class TaskScreenSql extends Connect {
 			PreparedStatement stmt = getConnection().prepareStatement(sqlInsertTask);
 			stmt.setString(1, name);
 			stmt.setString(2, description);
-			stmt.setString(3, period);
+			stmt.setDate(3, new java.sql.Date(sdf.parse(period).getTime()));
 			
 			int sqlInsertTaskQuery = stmt.executeUpdate();
 			
@@ -39,6 +43,9 @@ public class TaskScreenSql extends Connect {
 			closeConnection();			
 		} catch (SQLException e) {
 			System.out.println("Something went wrong... " + e.getMessage());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 //	

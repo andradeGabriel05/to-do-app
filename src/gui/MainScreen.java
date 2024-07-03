@@ -99,7 +99,7 @@ public class MainScreen extends JFrame {
 			}			
 			
 			System.out.println("[MainScreen] All projects readed!");
-			executeProjectSql.closeConnection();
+
 		} catch (SQLException e3) {
 			System.out.println("[MainScreen e3] Something went wrong... " + e3.getMessage());
 		}
@@ -163,6 +163,7 @@ public class MainScreen extends JFrame {
 
 		JPanel pnlPeriod = new JPanel();
 		pnlContainerPeriod.add(pnlPeriod);
+		
 
 		JLabel lblPeriod = new JLabel("Period");
 		pnlPeriod.add(lblPeriod);
@@ -263,6 +264,7 @@ public class MainScreen extends JFrame {
 		                    public void actionPerformed(ActionEvent e) {
 		                        System.out.println("[mainScreen] Deleting task... ");
 		                        try {
+
 		                            String sqlDelete = "DELETE FROM task WHERE idTask =" + taskNumber;
 		                            stmt.executeUpdate(sqlDelete);
 		                            System.out.println("[mainScreen] Task deleted!");
@@ -271,26 +273,28 @@ public class MainScreen extends JFrame {
 		                            System.out.println("[mainScreen] Closing connection... ");
 
 		                            executeTaskSql.closeConnection();
-		                            System.out.println("[mainScreen] Connection closed!");
 
+		                            
 		                            dispose();
 		                            setVisible(false);
 
 		                            MainScreen reloadScreen = new MainScreen();
 		                            reloadScreen.setVisible(true);
+		                            
+		                            
+	
 
-		                        } catch (SQLException e58) {
-		                            System.out.println("[MainScreen e58] Something went wrong... " + e58.getMessage());
+		                        } catch (SQLException e4) {
+		                            System.out.println("[MainScreen e4] Something went wrong... " + e4.getMessage());
 		                        }
 		                    }
 		                });
 
 
-
 		    }
 
 		    System.out.println("[mainScreen] All tasks read!");
-		    executeTaskSql.closeConnection();
+
 		} catch (SQLException e1) {
 		    e1.printStackTrace();
 		}
